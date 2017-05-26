@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RatingRequirements.Configuration;
+using System;
 using System.Windows.Forms;
 
 namespace RatingRequirements.UI
@@ -11,6 +12,8 @@ namespace RatingRequirements.UI
         [STAThread]
         static void Main()
         {
+			IoC.Instance.Initialize();
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MainForm());

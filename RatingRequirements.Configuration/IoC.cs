@@ -56,9 +56,9 @@ namespace RatingRequirements.Configuration
         /// Инициализировать контейнер.
         /// </summary>
         /// <param name="kernel">Ядро контейнера.</param>
-        public void Initialize(IKernel kernel)
+        public void Initialize(IKernel kernel = null)
         {
-            _kernel = kernel;
+            _kernel = kernel ?? new StandardKernel();
             ServiceConfigurator.ConfigureServices(_kernel, Configuration);
         }
 

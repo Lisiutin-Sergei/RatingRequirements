@@ -9,11 +9,25 @@ namespace RatingRequirements.Core.Interface.Service
     /// </summary>
     public interface IUserService
     {
-        /// <summary>
-        /// Загрузить список пользователей.
-        /// </summary>
-        /// <returns>Список пользователей.</returns>
-        List<User> LoadAllUsers();
+		/// <summary>
+		/// Получить пользователя по идентификатору.
+		/// </summary>
+		/// <param name="id">Идентификатор пользователя.</param>
+		/// <returns>Пользователь.</returns>
+		User GetUserById(Guid userId);
+
+		/// <summary>
+		/// Получить пользователя по логину.
+		/// </summary>
+		/// <param name="id">Логин пользователя.</param>
+		/// <returns>Пользователь.</returns>
+		User GetUserByLogin(string login);
+
+		/// <summary>
+		/// Загрузить список пользователей.
+		/// </summary>
+		/// <returns>Список пользователей.</returns>
+		List<User> LoadAllUsers();
 
         /// <summary>
         /// Получить список пользователей по фильтру.
@@ -22,11 +36,20 @@ namespace RatingRequirements.Core.Interface.Service
         /// <returns>Список пользователей.</returns>
         List<User> LoadUsersByFilter(Func<User, bool> filter);
 
-        /// <summary>
-        /// Зарегистрировать пользователя.
-        /// </summary>
-        /// <param name="user">Новый пользователь.</param>
-        /// <returns>Идентификатор пользователя.</returns>
-        Guid InsertUser(User user);
-    }
+		/// <summary>
+		/// Зарегистрировать пользователя.
+		/// </summary>
+		/// <param name="user">Новый пользователь.</param>
+		/// <param name="password">Пароль пользователя.</param>
+		/// <returns>Идентификатор пользователя.</returns>
+		Guid InsertUser(User user, string password);
+
+		/// <summary>
+		/// Проверить регистрационные данные пользователя.
+		/// </summary>
+		/// <param name="login">Логин.</param>
+		/// <param name="password">Пароль.</param>
+		/// <returns>Валидны ли регистрационные данные пользователя.</returns>
+		bool VerifyUserPassword(string login, string password);
+	}
 }

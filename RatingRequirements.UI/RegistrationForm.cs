@@ -52,15 +52,28 @@ namespace RatingRequirements.UI
                 var user = new User
                 {
                     Login = tbLogin.Text,
-                    Name = tbUserName.Text,
-                    PasswordHash = tbPassword.Text
+                    Name = tbUserName.Text
                 };
-                _userServie.InsertUser(user);
-            }
-            catch (Exception ex)
+                var userId = _userServie.InsertUser(user, tbPassword.Text);
+
+				// Переход на форму приложения
+
+			}
+			catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-    }
+
+		/// <summary>
+		/// Отменить авторизацию.
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void Btn_Cancel_Click(object sender, EventArgs e)
+		{
+			DialogResult = DialogResult.Cancel;
+			Close();
+		}
+	}
 }

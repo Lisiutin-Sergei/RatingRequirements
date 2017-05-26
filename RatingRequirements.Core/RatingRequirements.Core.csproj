@@ -69,9 +69,15 @@
     <Compile Include="Interface\Service\IUserService.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\SecurePasswordHasher.cs" />
     <Compile Include="Service\UserService.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\RatingRequirements.Utilities\RatingRequirements.Utilities.csproj">
+      <Project>{F3E419EE-BBCC-4DDD-A2BD-D90B1E054484}</Project>
+      <Name>RatingRequirements.Utilities</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>

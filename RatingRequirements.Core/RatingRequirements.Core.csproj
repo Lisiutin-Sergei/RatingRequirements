@@ -65,10 +65,26 @@
   <ItemGroup>
     <Compile Include="Interface\IUnitOfWork.cs" />
     <Compile Include="Interface\IUnitOfWorkFactory.cs" />
+    <Compile Include="Interface\Repository\IDocumentRepository.cs" />
+    <Compile Include="Interface\Repository\IIndicatorRepository.cs" />
+    <Compile Include="Interface\Repository\IIndicatorTypeRepository.cs" />
+    <Compile Include="Interface\Repository\IRegisterRepository.cs" />
     <Compile Include="Interface\Repository\IUserRepository.cs" />
+    <Compile Include="Interface\Service\IDocumentService.cs" />
+    <Compile Include="Interface\Service\IIndicatorService.cs" />
+    <Compile Include="Interface\Service\IIndicatorTypeService.cs" />
+    <Compile Include="Interface\Service\IRegisterService.cs" />
     <Compile Include="Interface\Service\IUserService.cs" />
+    <Compile Include="Model\Document.cs" />
+    <Compile Include="Model\Indicator.cs" />
+    <Compile Include="Model\IndicatorType.cs" />
+    <Compile Include="Model\Register.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\DocumentService.cs" />
+    <Compile Include="Service\IndicatorService.cs" />
+    <Compile Include="Service\IndicatorTypeService.cs" />
+    <Compile Include="Service\RegisterService.cs" />
     <Compile Include="Service\SecurePasswordHasher.cs" />
     <Compile Include="Service\UserService.cs" />
   </ItemGroup>

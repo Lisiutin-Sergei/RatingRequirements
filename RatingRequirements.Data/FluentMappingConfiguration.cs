@@ -1,5 +1,6 @@
 ﻿using Dapper.FluentMap;
 using Dapper.FluentMap.Dommel;
+using RatingRequirements.Data.Mapping;
 
 namespace RatingRequirements.Data
 {
@@ -12,10 +13,12 @@ namespace RatingRequirements.Data
         {
             FluentMapper.Initialize(config =>
             {
-                //config.AddMap(new NetworkMap());
-                //config.AddMap(new NeuronMap());
-                //config.AddMap(new InputAttributeMap());
-                //config.AddMap(new WeightMap());
+                config.AddMap(new UserMapping());
+                config.AddMap(new IndicatorMapping());
+                config.AddMap(new IndicatorTypeMapping());
+                config.AddMap(new RegisterMapping());
+                config.AddMap(new DocumentMapping());
+
                 config.ForDommel();
             });
         }

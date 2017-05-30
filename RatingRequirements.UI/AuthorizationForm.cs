@@ -1,4 +1,5 @@
-﻿using RatingRequirements.Core.Interface.Service;
+﻿using RatingRequirements.Configuration;
+using RatingRequirements.Core.Interface.Service;
 using RatingRequirements.Utilities.Common;
 using System;
 using System.Windows.Forms;
@@ -47,8 +48,12 @@ namespace RatingRequirements.UI
 
 				// Переход на форму приложения
 				var user = _userServie.GetUserByLogin(tbLogin.Text);
-
-			}
+                if (user != null)
+                {
+                    Close();
+                    IoC.Instance.Resolve<RegistersListForm>(new IoC.NinjectArgument("userId", user.UserId)).ShowDialog();
+                }
+            }
 			catch (Exception ex)
 			{
 				MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);

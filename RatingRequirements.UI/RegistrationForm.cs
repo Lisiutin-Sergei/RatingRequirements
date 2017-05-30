@@ -1,4 +1,5 @@
-﻿using RatingRequirements.Core.Interface.Service;
+﻿using RatingRequirements.Configuration;
+using RatingRequirements.Core.Interface.Service;
 using RatingRequirements.Core.Model;
 using RatingRequirements.Utilities.Common;
 using RatingRequirements.Utilities.ExtensionMethods;
@@ -56,9 +57,10 @@ namespace RatingRequirements.UI
                 };
                 var userId = _userServie.InsertUser(user, tbPassword.Text);
 
-				// Переход на форму приложения
-
-			}
+                // Переход на форму приложения
+                Close();
+                IoC.Instance.Resolve<RegistersListForm>(new IoC.NinjectArgument("userId", user.UserId)).ShowDialog();
+            }
 			catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);

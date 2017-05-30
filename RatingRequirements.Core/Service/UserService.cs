@@ -110,7 +110,7 @@ namespace RatingRequirements.Core.Service
 			using (IUnitOfWork unitOfWork = _unitOfWorkFactory.Create(_configuration))
 			{
 				var user = unitOfWork.UserRepository
-					.GetByFilter(e => e.Login.EqualsIgnoreCase(password))
+					.GetByFilter(e => e.Login.EqualsIgnoreCase(login))
 					.SingleOrDefault();
 
 				if (user == null)

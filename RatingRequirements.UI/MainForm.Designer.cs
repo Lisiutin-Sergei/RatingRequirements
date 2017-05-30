@@ -72,7 +72,7 @@
             this.btnRegister.TabIndex = 1;
             this.btnRegister.Text = "Регистрация";
             this.btnRegister.UseVisualStyleBackColor = true;
-            this.btnRegister.Click += new System.EventHandler(this.btnRegister_Click);
+            this.btnRegister.Click += new System.EventHandler(this.Btn_Register_Click);
             // 
             // btnAbout
             // 
@@ -82,6 +82,7 @@
             this.btnAbout.TabIndex = 1;
             this.btnAbout.Text = "О проекте";
             this.btnAbout.UseVisualStyleBackColor = true;
+            this.btnAbout.Click += new System.EventHandler(this.Btn_About_Click);
             // 
             // label3
             // 

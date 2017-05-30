@@ -15,6 +15,26 @@ namespace RatingRequirements.Core.Interface
         /// </summary>
         IUserRepository UserRepository { get; }
 
+        /// <summary>
+        /// Репозиторий реестров.
+        /// </summary>
+        IRegisterRepository RegisterRepository { get; }
+
+        /// <summary>
+        /// Репозиторий типов показателей.
+        /// </summary>
+        IIndicatorTypeRepository IndicatorTypeRepository { get; }
+
+        /// <summary>
+        /// Репозиторий показателей.
+        /// </summary>
+        IIndicatorRepository IndicatorRepository { get; }
+
+        /// <summary>
+        /// Репозиторий документов.
+        /// </summary>
+        IDocumentRepository DocumentRepository { get; }
+
         #endregion
 
         /// <summary>

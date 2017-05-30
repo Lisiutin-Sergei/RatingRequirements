@@ -26,6 +26,26 @@ namespace RatingRequirements.Data.UnitOfWork
         /// </summary>
         public IUserRepository UserRepository => new UserRepository(_dataContext.Value);
 
+        /// <summary>
+        /// Репозиторий нейронных сетей.
+        /// </summary>
+        public IRegisterRepository RegisterRepository => new RegisterRepository(_dataContext.Value);
+
+        /// <summary>
+        /// Репозиторий типов показателей.
+        /// </summary>
+        public IIndicatorTypeRepository IndicatorTypeRepository => new IndicatorTypeRepository(_dataContext.Value);
+
+        /// <summary>
+        /// Репозиторий показателей.
+        /// </summary>
+        public IIndicatorRepository IndicatorRepository => new IndicatorRepository(_dataContext.Value);
+
+        /// <summary>
+        /// Репозиторий показателей.
+        /// </summary>
+        public IDocumentRepository DocumentRepository => new DocumentRepository(_dataContext.Value);
+
         #endregion
 
         /// <summary>

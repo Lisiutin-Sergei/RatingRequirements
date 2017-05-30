@@ -33,6 +33,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="NCalc, Version=1.3.8.0, Culture=neutral, PublicKeyToken=973cde3f1cafed03, processorArchitecture=MSIL">
+      <HintPath>..\packages\ncalc.1.3.8\lib\NCalc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -47,12 +51,31 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AboutForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AboutForm.Designer.cs">
+      <DependentUpon>AboutForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="AuthorizationForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="AuthorizationForm.Designer.cs">
       <DependentUpon>AuthorizationForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="EditDocumentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditDocumentForm.Designer.cs">
+      <DependentUpon>EditDocumentForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EditRegisterForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditRegisterForm.Designer.cs">
+      <DependentUpon>EditRegisterForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formula.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -61,14 +84,29 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RegistersListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RegistersListForm.Designer.cs">
+      <DependentUpon>RegistersListForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="RegistrationForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="RegistrationForm.Designer.cs">
       <DependentUpon>RegistrationForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AboutForm.resx">
+      <DependentUpon>AboutForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AuthorizationForm.resx">
       <DependentUpon>AuthorizationForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditDocumentForm.resx">
+      <DependentUpon>EditDocumentForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditRegisterForm.resx">
+      <DependentUpon>EditRegisterForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -82,9 +120,13 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="RegistersListForm.resx">
+      <DependentUpon>RegistersListForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="RegistrationForm.resx">
       <DependentUpon>RegistrationForm.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -112,6 +154,18 @@
       <Name>RatingRequirements.Utilities</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\add.png" />
+    <Content Include="Resources\apply.png" />
+    <Content Include="Resources\cancel.png" />
+    <Content Include="Resources\delete.png" />
+    <Content Include="Resources\edit.png" />
+    <Content Include="Resources\exit.png" />
+    <Content Include="Resources\next.png" />
+    <Content Include="Resources\print.png" />
+    <Content Include="Resources\remove.png" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

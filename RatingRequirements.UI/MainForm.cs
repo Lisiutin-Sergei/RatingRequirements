@@ -1,12 +1,5 @@
 ﻿using RatingRequirements.Configuration;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace RatingRequirements.UI
@@ -25,7 +18,8 @@ namespace RatingRequirements.UI
         /// <param name="e"></param>
         private void Btn_Login_Click(object sender, EventArgs e)
         {
-
+            var form = IoC.Instance.Resolve<AuthorizationForm>();
+            form.ShowDialog();
         }
 
         /// <summary>
@@ -33,10 +27,20 @@ namespace RatingRequirements.UI
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnRegister_Click(object sender, EventArgs e)
+        private void Btn_Register_Click(object sender, EventArgs e)
         {
             var registrationForm = IoC.Instance.Resolve<RegistrationForm>();
             registrationForm.ShowDialog();
+        }
+
+        /// <summary>
+        /// О проекте.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Btn_About_Click(object sender, EventArgs e)
+        {
+            new AboutForm().ShowDialog();
         }
     }
 }

@@ -106,8 +106,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FluentMappingConfiguration.cs" />
+    <Compile Include="Mapping\DocumentMapping.cs" />
+    <Compile Include="Mapping\IndicatorMapping.cs" />
+    <Compile Include="Mapping\IndicatorTypeMapping.cs" />
+    <Compile Include="Mapping\RegisterMapping.cs" />
     <Compile Include="Mapping\UserMapping.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\DocumentRepository.cs" />
+    <Compile Include="Repositories\IndicatorRepository.cs" />
+    <Compile Include="Repositories\IndicatorTypeRepository.cs" />
+    <Compile Include="Repositories\RegisterRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="UnitOfWork\DataContext.cs" />
     <Compile Include="UnitOfWork\UnitOfWork.cs" />

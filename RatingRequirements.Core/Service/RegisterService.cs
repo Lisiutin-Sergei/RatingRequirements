@@ -7,6 +7,7 @@ using RatingRequirements.Core.Model;
 using RatingRequirements.Utilities.Common;
 using RatingRequirements.Utilities.ExtensionMethods;
 using System.Linq;
+using RatingRequirements.Core.Model.Business;
 
 namespace RatingRequirements.Core.Service
 {
@@ -135,7 +136,57 @@ namespace RatingRequirements.Core.Service
                 {
                     unitOfWork.RollbackTransaction();
                     throw;
-                }               
+                }
+            }
+        }
+
+        /// <summary>
+        /// Получить полный список документов с разбивкой по показателям и их типам.
+        /// </summary>
+        /// <param name="registerId">Идентификатор реестра.</param>
+        /// <returns>Полный список документов с разбивкой по показателям и их типам.</returns>
+        public List<ImportIndicatorType> GetImportIndicatorTypes(Guid registerId)
+        {
+            Argument.Require(registerId != Guid.Empty, "Не указан идентификатор реестра.");
+
+            List<ImportIndicatorType> indicatorTypesList = new List<ImportIndicatorType>();
+            double tempDouble;
+
+            using (IUnitOfWork unitOfWork = _unitOfWorkFactory.Create(_configuration))
+            {
+                var register = unitOfWork.RegisterRepository.GetByID(registerId);
+                var indicatorTypes = unitOfWork.IndicatorTypeRepository.GetAll();
+                var indicators = unitOfWork.IndicatorRepository.GetAll();
+                var documents = unitOfWork.DocumentRepository.GetByFilter(e => e.RegisterId == registerId);
+
+                foreach (var indicatorType in indicatorTypes)
+                {
+                    var importIndicatorType = new ImportIndicatorType
+                    {
+                        IndicatorType = indicatorType,
+                        Indicators = indicators
+                            .Where(i => i.IndicatorTypeId == indicatorType.IndicatorTypeId)
+                            .Select(i => new ImportIndicator
+                            {
+                                Indicator = i,
+                                Documents = documents
+                                    .Where(d => d.IndicatorId == i.IndicatorId)
+                                    .ToList()
+                            })
+                            .ToList()
+                    };
+
+                    // Считаем общие суммы
+                    importIndicatorType.Points = importIndicatorType.Indicators
+                        .Sum(it =>
+                            it.Documents
+                                .Where(d => double.TryParse(d.Points, out tempDouble))
+                                .Sum(d => Convert.ToDouble(d.Points)));
+
+                    indicatorTypesList.Add(importIndicatorType);
+                }
+
+                return indicatorTypesList;
             }
         }
     }

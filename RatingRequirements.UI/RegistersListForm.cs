@@ -1,5 +1,6 @@
 ﻿using RatingRequirements.Configuration;
 using RatingRequirements.Core.Interface.Service;
+using RatingRequirements.UI.Import;
 using System;
 using System.Linq;
 using System.Windows.Forms;
@@ -15,6 +16,11 @@ namespace RatingRequirements.UI
         /// Идентификатор пользователя.
         /// </summary>
         private readonly Guid _userId;
+
+        /// <summary>
+        /// Сервис импорта данных.
+        /// </summary>
+        IImport importService = IoC.Instance.Resolve<DocxWordImport>();
 
         #region Сервисы
 
@@ -79,7 +85,7 @@ namespace RatingRequirements.UI
         }
 
         /// <summary>
-        /// Добавление нового реестра.
+        /// Изменение реестра.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -111,7 +117,7 @@ namespace RatingRequirements.UI
         }
 
         /// <summary>
-        /// Добавление нового реестра.
+        /// Удаление реестра.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -133,6 +139,30 @@ namespace RatingRequirements.UI
                     _registerService.DeleteRegister(registerId);
                     RefreshRegistersList();
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        /// <summary>
+        /// Печать реестра.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Bbtn_PrintRegister_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dgvRegisters.SelectedRows.Count != 1)
+                {
+                    MessageBox.Show("Выберите реестр для печати", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                var registerId = Guid.Parse(dgvRegisters.SelectedRows[0].Cells["RegisterId"]?.Value?.ToString());
+                importService.ImportRegister(registerId);
             }
             catch (Exception ex)
             {

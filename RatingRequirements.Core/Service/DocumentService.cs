@@ -41,6 +41,22 @@ namespace RatingRequirements.Core.Service
         }
 
         /// <summary>
+        /// Получить список документов для реестра.
+        /// </summary>
+        /// <param name="registerId">Идентификатор реестра.</param>
+        /// <returns>Список документов для реестра.</returns>
+        public IEnumerable<Document> GetDocumentsByRegister(Guid registerId)
+        {
+            Argument.Require(registerId != Guid.Empty, "Не указан идентификатор реестра.");
+
+            using (IUnitOfWork unitOfWork = _unitOfWorkFactory.Create(_configuration))
+            {
+                return unitOfWork.DocumentRepository
+                    .GetByFilter(e => e.RegisterId == registerId);
+            }
+        }
+        
+        /// <summary>
         /// Получить документ по идентификатору.
         /// </summary>
         /// <param name="documentId">Идентификатор документа.</param>

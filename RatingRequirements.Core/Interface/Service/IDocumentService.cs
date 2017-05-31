@@ -25,6 +25,13 @@ namespace RatingRequirements.Core.Interface.Service
         Document GetDocumentById(Guid documentId);
 
         /// <summary>
+        /// Получить список документов для реестра.
+        /// </summary>
+        /// <param name="registerId">Идентификатор реестра.</param>
+        /// <returns>Список документов для реестра.</returns>
+        IEnumerable<Document> GetDocumentsByRegister(Guid registerId);
+
+        /// <summary>
         /// Сохранить документ.
         /// </summary>
         /// <param name="document">Документ.</param>

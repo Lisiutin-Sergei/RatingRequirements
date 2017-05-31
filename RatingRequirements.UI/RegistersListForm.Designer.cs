@@ -129,6 +129,7 @@
             this.btnPrintRegister.Size = new System.Drawing.Size(50, 50);
             this.btnPrintRegister.TabIndex = 1;
             this.btnPrintRegister.UseVisualStyleBackColor = true;
+            this.btnPrintRegister.Click += new System.EventHandler(this.Bbtn_PrintRegister_Click);
             // 
             // tbUserName
             // 

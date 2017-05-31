@@ -1,4 +1,5 @@
 ﻿using RatingRequirements.Core.Model;
+using RatingRequirements.Core.Model.Business;
 using System;
 using System.Collections.Generic;
 
@@ -22,6 +23,13 @@ namespace RatingRequirements.Core.Interface.Service
         /// <param name="userId">Идентификатор пользователя.</param>
         /// <returns>Список реестров для пользователя.</returns>
         IEnumerable<Register> GetRegistersByUserId(Guid userId);
+
+        /// <summary>
+        /// Получить полный список документов с разбивкой по показателям и их типам.
+        /// </summary>
+        /// <param name="registerId">Идентификатор реестра.</param>
+        /// <returns>Полный список документов с разбивкой по показателям и их типам.</returns>
+        List<ImportIndicatorType> GetImportIndicatorTypes(Guid registerId);
 
         /// <summary>
         /// Сохранить реестр.

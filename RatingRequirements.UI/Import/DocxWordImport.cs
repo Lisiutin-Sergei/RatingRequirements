@@ -128,6 +128,12 @@ namespace RatingRequirements.UI.Import
                             // Заполняем строку данными. Причем название показателя только у 1 строки.
                             FillDocumentRow(currentRow, currentDocument, documentIndex == 0 ? indicator.Indicator.Name : null);
                         }
+
+                        // Объединить ячейки для показателя
+                        if (indicator.Documents.Count > 1)
+                        {
+                            table.MergeCellsInColumn(0, indicatorRowIndex, indicatorRowIndex + indicator.Documents.Count - 1);
+                        }
                     }
                 }
             }

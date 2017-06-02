@@ -55,7 +55,7 @@ namespace RatingRequirements.UI
                     Login = tbLogin.Text,
                     Name = tbUserName.Text
                 };
-                var userId = _userServie.InsertUser(user, tbPassword.Text);
+                user.UserId = _userServie.InsertUser(user, tbPassword.Text);
 
                 // Переход на форму приложения
                 Close();

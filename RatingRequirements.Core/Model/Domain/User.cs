@@ -26,5 +26,10 @@ namespace RatingRequirements.Core.Model
         /// Хэш пароля.
         /// </summary>
         public string PasswordHash { get; set; }
+
+        /// <summary>
+        /// Должность.
+        /// </summary>
+        public Guid? PositionId { get; set; }
     }
 }

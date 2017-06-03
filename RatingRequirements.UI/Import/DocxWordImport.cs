@@ -1,16 +1,13 @@
 ﻿using Novacode;
 using RatingRequirements.Core.Interface.Service;
 using RatingRequirements.Core.Model;
-using RatingRequirements.Core.Model.Business;
+using RatingRequirements.Core.Model.Domain;
 using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RatingRequirements.UI.Import
 {
@@ -24,6 +21,11 @@ namespace RatingRequirements.UI.Import
         /// </summary>
         private readonly string _resourcesDirectory = Path.Combine(new DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory).Parent.Parent.Parent.FullName, "UserDocuments");
 
+        /// <summary>
+        /// Идентификатор пользователя.
+        /// </summary>
+        private readonly Guid _userId;
+
         #region Сервисы
 
         private readonly IRegisterService _registerService;
@@ -31,10 +33,15 @@ namespace RatingRequirements.UI.Import
 
         #endregion
 
-        public DocxWordImport(IRegisterService registerService, IUserService userService)
+        public DocxWordImport(
+            Guid userId,
+            IRegisterService registerService, 
+            IUserService userService)
         {
             _registerService = registerService;
             _userService = userService;
+
+            _userId = userId;
         }
 
         /// <summary>
@@ -47,7 +54,10 @@ namespace RatingRequirements.UI.Import
             var register = _registerService.GetRegisterById(registerId);
             var user = _userService.GetUserById(register.UserId);
 
-            var wordFileName = ConfigurationManager.AppSettings["TemplateFile"];
+            var wordFileName = user.PositionId == PositionEnum.ZK
+                ? ConfigurationManager.AppSettings["ZkTemplateFile"]
+                : ConfigurationManager.AppSettings["TemplateFile"];
+
             var wordFilePath = Path.Combine(_resourcesDirectory, wordFileName);
 
             using (DocX document = DocX.Load(wordFilePath))
@@ -73,30 +83,43 @@ namespace RatingRequirements.UI.Import
             }
         }
 
+        /// <summary>
+        /// Обработка данных таблицы word'а.
+        /// </summary>
+        /// <param name="document">Документ word.</param>
+        /// <param name="registerId">Идентификатор реестра.</param>
         private void ProcessRegister(DocX document, Guid registerId)
         {
             // Список показателей
             var register = _registerService.GetRegisterById(registerId);
             var user = _userService.GetUserById(register.UserId);
-            List<ImportIndicatorType> indicatorTypesList = _registerService.GetImportIndicatorTypes(registerId);
+            var indicatorTypesList = _registerService.GetImportIndicatorTypes(registerId, _userId);
 
             var table = document.Tables.FirstOrDefault();
 
             // Делаем замены в файле
             document.ReplaceText("{user_name_upper}", user.Name.ToUpper());
             document.ReplaceText("{user_name_lower}", user.Name);
+            document.ReplaceText("{register_year}", register.RegisterDate.Year.ToString());
+
             document.ReplaceText("{umr_sum}", indicatorTypesList.First(e => e.IndicatorType.IndicatorTypeId == IndicatorTypeEnum.Umr).Points.ToString());
             document.ReplaceText("{nir_sum}", indicatorTypesList.First(e => e.IndicatorType.IndicatorTypeId == IndicatorTypeEnum.Nir).Points.ToString());
             document.ReplaceText("{pvor_sum}", indicatorTypesList.First(e => e.IndicatorType.IndicatorTypeId == IndicatorTypeEnum.Pvor).Points.ToString());
             document.ReplaceText("{ia_sum}", indicatorTypesList.First(e => e.IndicatorType.IndicatorTypeId == IndicatorTypeEnum.Ia).Points.ToString());
             document.ReplaceText("{pb_sum}", indicatorTypesList.First(e => e.IndicatorType.IndicatorTypeId == IndicatorTypeEnum.Pb).Points.ToString());
-            document.ReplaceText("{all_sum}", indicatorTypesList.Sum(e => e.Points).ToString());
-            document.ReplaceText("{register_year}", register.RegisterDate.Year.ToString());
+            document.ReplaceText("{zv_sum}", indicatorTypesList.FirstOrDefault(e => e.IndicatorType.IndicatorTypeId == IndicatorTypeEnum.Zvk)?.Points.ToString() ?? string.Empty);
+            document.ReplaceText("{all_sum}", indicatorTypesList.Where(e => e.IndicatorType.IndicatorTypeId != IndicatorTypeEnum.Zvk).Sum(e => e.Points).ToString());
+            document.ReplaceText("{all_zv_sum}", indicatorTypesList.Sum(e => e.Points).ToString());
 
             // В цикле по всем типам показателей
             foreach (var indicatorTypeId in IndicatorTypeEnum.GetSortedIndicatorTypes())
             {
-                var currentIndicatorType = indicatorTypesList.First(e => e.IndicatorType.IndicatorTypeId == indicatorTypeId);
+                var currentIndicatorType = indicatorTypesList.FirstOrDefault(e => 
+                    e.IndicatorType.IndicatorTypeId == indicatorTypeId);
+                if (currentIndicatorType == null)
+                {
+                    continue;
+                }
 
                 // В цикле по всем показателям типа
                 foreach (var indicator in currentIndicatorType.Indicators)

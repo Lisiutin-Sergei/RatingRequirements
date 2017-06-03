@@ -16,27 +16,27 @@ namespace RatingRequirements.Core.Model
         /// <summary>
         /// НАУЧНО-ИССЛЕДОВАТЕЛЬСКАЯ РАБОТА.
         /// </summary>
-        public static Guid Nir = Guid.Parse("2d0094aa-4ccf-4e84-a517-1be358b9e1d7");
+        public static Guid Nir = Guid.Parse("3254270b-6734-4533-8753-03f25450f9b9");
 
         /// <summary>
         /// ПРОФОРИЕНТАЦИОННАЯ, ВОСПИТАТЕЛЬНАЯ И ОБЩЕСТВЕННАЯ РАБОТА.
         /// </summary>
-        public static Guid Pvor = Guid.Parse("3254270b-6734-4533-8753-03f25450f9b9");
+        public static Guid Pvor = Guid.Parse("2d0094aa-4ccf-4e84-a517-1be358b9e1d7");
 
         /// <summary>
         /// УРОВЕНЬ ВЛАДЕНИЯ ИНОСТРАННЫМ ЯЗЫКОМ.
         /// </summary>
-        public static Guid Ia = Guid.Parse("4c6a655b-3714-40d3-a997-99e9ddfedd9a");
+        public static Guid Ia = Guid.Parse("facb4160-7e2c-47d0-9002-7e4c57cde126");
 
         /// <summary>
         /// ПРЕМИАЛЬНЫЕ БАЛЛЫ.
         /// </summary>
-        public static Guid Pb = Guid.Parse("8aa87bbf-a471-4637-879f-a3df96fdee6f");
+        public static Guid Pb = Guid.Parse("4c6a655b-3714-40d3-a997-99e9ddfedd9a");
 
         /// <summary>
         /// ЗАВЕДУЮЩИЙ ВЫПУСКАЮЩЕЙ КАФЕДРОЙ.
         /// </summary>
-        public static Guid Zvk = Guid.Parse("facb4160-7e2c-47d0-9002-7e4c57cde126");
+        public static Guid Zvk = Guid.Parse("8aa87bbf-a471-4637-879f-a3df96fdee6f");
 
         /// <summary>
         /// Получить отсортированный список.

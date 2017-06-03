@@ -20,7 +20,7 @@ namespace RatingRequirements.UI
         /// <summary>
         /// Сервис импорта данных.
         /// </summary>
-        IImport importService = IoC.Instance.Resolve<DocxWordImport>();
+        private readonly IImport _importService;
 
         #region Сервисы
 
@@ -40,6 +40,8 @@ namespace RatingRequirements.UI
 
             _registerService = registerService;
             _userService = userService;
+
+            _importService = IoC.Instance.Resolve<DocxWordImport>(new IoC.NinjectArgument("userId", _userId));
         }
 
         #region Обработка событий
@@ -162,7 +164,7 @@ namespace RatingRequirements.UI
                 }
 
                 var registerId = Guid.Parse(dgvRegisters.SelectedRows[0].Cells["RegisterId"]?.Value?.ToString());
-                importService.ImportRegister(registerId);
+                _importService.ImportRegister(registerId);
             }
             catch (Exception ex)
             {

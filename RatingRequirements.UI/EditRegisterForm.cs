@@ -129,8 +129,8 @@ namespace RatingRequirements.UI
                 };
                 _registerId = _registerService.SaveRegister(register);
 
-                // Перезагрузить форму после сохранения
-                Form_Load(null, null);
+                DialogResult = DialogResult.OK;
+                Close();
             }
             catch (Exception ex)
             {
@@ -267,7 +267,7 @@ namespace RatingRequirements.UI
         {
             treeIndicators.Nodes.Clear();
 
-            var indicatorTypes = _indicatorTypeService.GetAllIndicatorTypes();
+            var indicatorTypes = _indicatorTypeService.GetIndicatorTypesForUser(_userId);
             var indicators = _indicatorService.GetAllIndicators();
 
             if (!(indicatorTypes?.Any() ?? false) || !(indicators?.Any() ?? false))

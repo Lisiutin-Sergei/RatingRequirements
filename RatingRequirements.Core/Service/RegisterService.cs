@@ -8,6 +8,7 @@ using RatingRequirements.Utilities.Common;
 using RatingRequirements.Utilities.ExtensionMethods;
 using System.Linq;
 using RatingRequirements.Core.Model.Business;
+using RatingRequirements.Core.Model.Domain;
 
 namespace RatingRequirements.Core.Service
 {
@@ -144,18 +145,26 @@ namespace RatingRequirements.Core.Service
         /// Получить полный список документов с разбивкой по показателям и их типам.
         /// </summary>
         /// <param name="registerId">Идентификатор реестра.</param>
+        /// <param name="userId">Идентификатор пользователя.</param>
         /// <returns>Полный список документов с разбивкой по показателям и их типам.</returns>
-        public List<ImportIndicatorType> GetImportIndicatorTypes(Guid registerId)
+        public List<ImportIndicatorType> GetImportIndicatorTypes(Guid registerId, Guid userId)
         {
             Argument.Require(registerId != Guid.Empty, "Не указан идентификатор реестра.");
+            Argument.Require(userId != Guid.Empty, "Не указан идентификатор пользователя.");
 
             List<ImportIndicatorType> indicatorTypesList = new List<ImportIndicatorType>();
             double tempDouble;
 
             using (IUnitOfWork unitOfWork = _unitOfWorkFactory.Create(_configuration))
             {
+                var user = unitOfWork.UserRepository.GetByID(userId);
                 var register = unitOfWork.RegisterRepository.GetByID(registerId);
-                var indicatorTypes = unitOfWork.IndicatorTypeRepository.GetAll();
+
+                var indicatorTypes = user.PositionId == PositionEnum.ZK
+                    ? unitOfWork.IndicatorTypeRepository.GetAll()
+                    : unitOfWork.IndicatorTypeRepository.GetAll()
+                        .Where(e => e.IndicatorTypeId != IndicatorTypeEnum.Zvk);
+
                 var indicators = unitOfWork.IndicatorRepository.GetAll();
                 var documents = unitOfWork.DocumentRepository.GetByFilter(e => e.RegisterId == registerId);
 

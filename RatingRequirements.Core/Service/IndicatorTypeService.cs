@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using RatingRequirements.Core.Model;
 using System;
 using RatingRequirements.Utilities.Common;
+using RatingRequirements.Core.Model.Domain;
+using System.Linq;
 
 namespace RatingRequirements.Core.Service
 {
@@ -31,6 +33,25 @@ namespace RatingRequirements.Core.Service
             using (IUnitOfWork unitOfWork = _unitOfWorkFactory.Create(_configuration))
             {
                 return unitOfWork.IndicatorTypeRepository.GetAll();
+            }
+        }
+
+        /// <summary>
+        /// Получить список типов показателей для пользователя.
+        /// </summary>
+        /// <returns>Список типов показателей для пользователя.</returns>
+        public IEnumerable<IndicatorType> GetIndicatorTypesForUser(Guid userId)
+        {
+            Argument.Require(userId != Guid.Empty, "Не указан идентификатор пользователя.");
+
+            using (IUnitOfWork unitOfWork = _unitOfWorkFactory.Create(_configuration))
+            {
+                var user = unitOfWork.UserRepository.GetByID(userId);
+                var indicatorTypes = unitOfWork.IndicatorTypeRepository.GetAll();
+
+                return user.PositionId == PositionEnum.ZK
+                    ? indicatorTypes
+                    : indicatorTypes.Where(e => e.IndicatorTypeId != IndicatorTypeEnum.Zvk);
             }
         }
 

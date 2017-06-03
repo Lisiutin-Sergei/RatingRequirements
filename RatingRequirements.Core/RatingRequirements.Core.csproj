@@ -69,6 +69,7 @@
     <Compile Include="Interface\Repository\IIndicatorRepository.cs" />
     <Compile Include="Interface\Repository\IIndicatorTypeRepository.cs" />
     <Compile Include="Interface\Repository\IRegisterRepository.cs" />
+    <Compile Include="Interface\Repository\IPositionRepository.cs" />
     <Compile Include="Interface\Repository\IUserRepository.cs" />
     <Compile Include="Interface\Service\IDocumentService.cs" />
     <Compile Include="Interface\Service\IIndicatorService.cs" />
@@ -81,6 +82,8 @@
     <Compile Include="Model\Domain\Indicator.cs" />
     <Compile Include="Model\Domain\IndicatorType.cs" />
     <Compile Include="Model\Domain\IndicatorTypeEnum.cs" />
+    <Compile Include="Model\Domain\Position.cs" />
+    <Compile Include="Model\Domain\PositionEnum.cs" />
     <Compile Include="Model\Domain\Register.cs" />
     <Compile Include="Model\Domain\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

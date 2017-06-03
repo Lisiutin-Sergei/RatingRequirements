@@ -95,6 +95,7 @@
   <ItemGroup>
     <Compile Include="Data\Repositories\IndicatorTypeRepositoryTest.cs" />
     <Compile Include="Data\Repositories\IndicatorRepositoryTest.cs" />
+    <Compile Include="Data\Repositories\PositionRepositoryTest.cs" />
     <Compile Include="Data\Repositories\UserRepositoryTest.cs" />
     <Compile Include="BaseTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

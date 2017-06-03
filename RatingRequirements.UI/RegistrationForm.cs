@@ -24,12 +24,33 @@ namespace RatingRequirements.UI
         }
 
         /// <summary>
+        /// При загрузке формы.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Form_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                var positions = _userServie.GetAllPositions();
+
+                cbPosition.DataSource = positions;
+                cbPosition.DisplayMember = "Name"; 
+                cbPosition.ValueMember = "PositionId";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        /// <summary>
         /// Валидация регистрации пользователя.
         /// </summary>
         private void ValidateRegistration()
         {
             Argument.NotNullOrWhiteSpace(tbUserName.Text, "Не заполнено имя пользователя.");
-            Argument.NotNullOrWhiteSpace(tbUserPosition.Text, "Не заполнена должность пользователя.");
+            Argument.NotNullOrWhiteSpace(cbPosition.Text, "Не заполнена должность пользователя.");
             Argument.NotNullOrWhiteSpace(tbLogin.Text, "Не заполнен логин пользователя.");
             Argument.NotNullOrWhiteSpace(tbPassword.Text, "Не заполнен пароль пользователя.");
             Argument.NotNullOrWhiteSpace(tbConfirmPassword.Text, "Не заполнено подтверждение пароль пользователя.");
@@ -53,7 +74,8 @@ namespace RatingRequirements.UI
                 var user = new User
                 {
                     Login = tbLogin.Text,
-                    Name = tbUserName.Text
+                    Name = tbUserName.Text,
+                    PositionId = (Guid)cbPosition.SelectedValue
                 };
                 user.UserId = _userServie.InsertUser(user, tbPassword.Text);
 
@@ -61,21 +83,21 @@ namespace RatingRequirements.UI
                 Close();
                 IoC.Instance.Resolve<RegistersListForm>(new IoC.NinjectArgument("userId", user.UserId)).ShowDialog();
             }
-			catch (Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-		/// <summary>
-		/// Отменить авторизацию.
-		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="e"></param>
-		private void Btn_Cancel_Click(object sender, EventArgs e)
-		{
-			DialogResult = DialogResult.Cancel;
-			Close();
-		}
-	}
+        /// <summary>
+        /// Отменить авторизацию.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Btn_Cancel_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
+            Close();
+        }
+    }
 }

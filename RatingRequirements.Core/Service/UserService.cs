@@ -7,6 +7,7 @@ using RatingRequirements.Core.Model;
 using System;
 using RatingRequirements.Utilities.Common;
 using RatingRequirements.Utilities.ExtensionMethods;
+using RatingRequirements.Core.Model.Domain;
 
 namespace RatingRequirements.Core.Service
 {
@@ -121,5 +122,17 @@ namespace RatingRequirements.Core.Service
 				return SecurePasswordHasher.Verify(password, user.PasswordHash);
 			}
 		}
+
+        /// <summary>
+        /// Получить список должностей.
+        /// </summary>
+        /// <returns>Список должностей.</returns>
+        public List<Position> GetAllPositions()
+        {
+            using (IUnitOfWork unitOfWork = _unitOfWorkFactory.Create(_configuration))
+            {
+                return unitOfWork.PositionRepository.GetAll().ToList();
+            }
+        }
 	}
 }

@@ -18,6 +18,7 @@ namespace RatingRequirements.Data
                 config.AddMap(new IndicatorTypeMapping());
                 config.AddMap(new RegisterMapping());
                 config.AddMap(new DocumentMapping());
+                config.AddMap(new PositionMapping());
 
                 config.ForDommel();
             });

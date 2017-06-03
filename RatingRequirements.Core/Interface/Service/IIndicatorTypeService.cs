@@ -16,6 +16,12 @@ namespace RatingRequirements.Core.Interface.Service
        IEnumerable<IndicatorType> GetAllIndicatorTypes();
 
         /// <summary>
+        /// Получить список типов показателей для пользователя.
+        /// </summary>
+        /// <returns>Список типов показателей для пользователя.</returns>
+        IEnumerable<IndicatorType> GetIndicatorTypesForUser(Guid userId);
+
+        /// <summary>
         /// Получить тип показателя по идентификатору.
         /// </summary>
         /// <returns>Тип показателя.</returns>

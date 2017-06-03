@@ -46,6 +46,11 @@ namespace RatingRequirements.Data.UnitOfWork
         /// </summary>
         public IDocumentRepository DocumentRepository => new DocumentRepository(_dataContext.Value);
 
+        /// <summary>
+        /// Репозиторий должностей.
+        /// </summary>
+        public IPositionRepository PositionRepository => new PositionRepository(_dataContext.Value);
+
         #endregion
 
         /// <summary>

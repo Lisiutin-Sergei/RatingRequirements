@@ -28,8 +28,9 @@ namespace RatingRequirements.Core.Interface.Service
         /// Получить полный список документов с разбивкой по показателям и их типам.
         /// </summary>
         /// <param name="registerId">Идентификатор реестра.</param>
+        /// <param name="userId">Идентификатор пользователя.</param>
         /// <returns>Полный список документов с разбивкой по показателям и их типам.</returns>
-        List<ImportIndicatorType> GetImportIndicatorTypes(Guid registerId);
+        List<ImportIndicatorType> GetImportIndicatorTypes(Guid registerId, Guid userId);
 
         /// <summary>
         /// Сохранить реестр.

@@ -51,6 +51,7 @@ namespace RatingRequirements.Configuration
             kernel.Bind<IIndicatorTypeRepository>().To<IndicatorTypeRepository>().InTransientScope();
             kernel.Bind<IIndicatorRepository>().To<IndicatorRepository>().InTransientScope();
             kernel.Bind<IDocumentRepository>().To<DocumentRepository>().InTransientScope();
+            kernel.Bind<IPositionRepository>().To<PositionRepository>().InTransientScope();
         }
 
         /// <summary>

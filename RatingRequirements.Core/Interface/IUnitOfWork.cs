@@ -35,6 +35,11 @@ namespace RatingRequirements.Core.Interface
         /// </summary>
         IDocumentRepository DocumentRepository { get; }
 
+        /// <summary>
+        /// Репозиторий должностей.
+        /// </summary>
+        IPositionRepository PositionRepository { get; }
+
         #endregion
 
         /// <summary>

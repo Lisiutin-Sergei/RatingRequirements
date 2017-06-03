@@ -1,4 +1,5 @@
 ﻿using RatingRequirements.Core.Model;
+using RatingRequirements.Core.Model.Domain;
 using System;
 using System.Collections.Generic;
 
@@ -51,5 +52,12 @@ namespace RatingRequirements.Core.Interface.Service
 		/// <param name="password">Пароль.</param>
 		/// <returns>Валидны ли регистрационные данные пользователя.</returns>
 		bool VerifyUserPassword(string login, string password);
-	}
+
+        /// <summary>
+        /// Получить список должностей.
+        /// </summary>
+        /// <returns>Список должностей.</returns>
+        List<Position> GetAllPositions();
+
+    }
 }

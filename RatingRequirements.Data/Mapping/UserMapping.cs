@@ -22,6 +22,8 @@ namespace RatingRequirements.Data.Mapping
                 .ToColumn("password");
             Map(e => e.Login)
                 .ToColumn("login");
+            Map(e => e.PositionId)
+                .ToColumn("position_id");
         }
     }
 }

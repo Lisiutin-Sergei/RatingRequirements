@@ -209,8 +209,8 @@ namespace RatingRequirements.UI
                 };
                 _documentId = _documentService.SaveDocument(document);
 
-                // Перезагрузить форму после сохранения
-                Form_Load(null, null);
+                DialogResult = DialogResult.OK;
+                Close();
             }
             catch (Exception ex)
             {

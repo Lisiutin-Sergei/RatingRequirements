@@ -81,6 +81,7 @@
             this.tbPassword.Name = "tbPassword";
             this.tbPassword.Size = new System.Drawing.Size(170, 20);
             this.tbPassword.TabIndex = 3;
+            this.tbPassword.UseSystemPasswordChar = true;
             // 
             // label3
             // 
@@ -97,6 +98,7 @@
             this.tbConfirmPassword.Name = "tbConfirmPassword";
             this.tbConfirmPassword.Size = new System.Drawing.Size(170, 20);
             this.tbConfirmPassword.TabIndex = 5;
+            this.tbConfirmPassword.UseSystemPasswordChar = true;
             // 
             // label4
             // 

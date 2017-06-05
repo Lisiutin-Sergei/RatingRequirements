@@ -1,5 +1,4 @@
-﻿
-using Dommel;
+﻿using Dommel;
 using RatingRequirements.Core.Interface.Repository;
 using RatingRequirements.Core.Model;
 using RatingRequirements.Data.UnitOfWork;

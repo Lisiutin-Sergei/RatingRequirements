@@ -37,10 +37,7 @@ namespace RatingRequirements.UI.Import
         public WordImport(
             Guid userId,
             IRegisterService registerService,
-            IUserService userService,
-            IIndicatorService indicatorService,
-            IIndicatorTypeService indicatorTypeService,
-            IDocumentService documentService)
+            IUserService userService)
         {
             _registerService = registerService;
             _userService = userService;

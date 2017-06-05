@@ -246,7 +246,7 @@ namespace RatingRequirements.UI
             }
         }
 
-        #endregion
+        #endregion 
 
         #region Вспомогательные методы
 

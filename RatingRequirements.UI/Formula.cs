@@ -62,13 +62,13 @@ namespace RatingRequirements.UI
                e[0].In(30, 60) ? null : "Допустимые значения для 1 параметра - 30, 60.");
             _checkers.Add("НИР6", e => null);
             _checkers.Add("НИР7", e => null);
-            _checkers.Add("НИР8", e =>
-               e[0].In(120, 360) ? null : "Допустимые значения для 1 параметра - 120, 360.");
-            _checkers.Add("НИР9", e => null);
-            _checkers.Add("НИР10", e =>
+            _checkers.Add("НИР8", e => null);
+            _checkers.Add("НИР9", e =>
+              e[0].In(120, 360) ? null : "Допустимые значения для 1 параметра - 120, 360.");
+            _checkers.Add("НИР10", e => null);
+            _checkers.Add("НИР11", e =>
                e[0].In(120, 60) ? null : "Допустимые значения для 1 параметра - 60, 120.");
-            _checkers.Add("НИР11", e => null);
-			_checkers.Add("НИР12", e => null);
+            _checkers.Add("НИР12", e => null);
 		}
 
         /// <summary>

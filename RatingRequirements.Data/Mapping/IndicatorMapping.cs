@@ -24,6 +24,10 @@ namespace RatingRequirements.Data.Mapping
                 .ToColumn("formula_base");
             Map(e => e.ParamsCount)
                 .ToColumn("params_count");
-        }
+			Map(e => e.LongName)
+				.ToColumn("long_name");
+			Map(e => e.OrderNumber)
+				.ToColumn("order_number");
+		}
     }
 }

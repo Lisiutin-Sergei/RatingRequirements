@@ -82,7 +82,7 @@ namespace RatingRequirements.UI
 
                 var indicatorType = _indicatorTypeService.GetIndicatorTypeById(_indicator.IndicatorTypeId);
 
-                tbIndicator.Text = _indicator.Name;
+                tbIndicator.Text = $"{_indicator.Name} ({_indicator.LongName})";
                 tbIndicatorType.Text = indicatorType.Name;
                 tbIndicatorFormula.Text = _indicator.FormulaBase;
 

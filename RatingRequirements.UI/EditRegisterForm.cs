@@ -281,7 +281,9 @@ namespace RatingRequirements.UI
                 var node = treeIndicators.Nodes.Add(indicatorType.IndicatorTypeId.ToString(), indicatorType.Name);
 
                 // Накидать показатели для типа на 2 уровень дерева
-                var currentIndicators = indicators.Where(e => e.IndicatorTypeId == indicatorType.IndicatorTypeId);
+                var currentIndicators = indicators
+					.Where(e => e.IndicatorTypeId == indicatorType.IndicatorTypeId)
+					.OrderBy(e => e.OrderNumber);
                 foreach (var indicator in currentIndicators)
                 {
                     node.Nodes.Add(indicator.IndicatorId.ToString(), indicator.Name);

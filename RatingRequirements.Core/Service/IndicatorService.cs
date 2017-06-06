@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using RatingRequirements.Core.Model;
 using System;
 using RatingRequirements.Utilities.Common;
+using System.Linq;
 
 namespace RatingRequirements.Core.Service
 {
@@ -30,7 +31,8 @@ namespace RatingRequirements.Core.Service
         {
             using (IUnitOfWork unitOfWork = _unitOfWorkFactory.Create(_configuration))
             {
-                return unitOfWork.IndicatorRepository.GetAll();
+                return unitOfWork.IndicatorRepository.GetAll()
+					.OrderBy(e => e.Name);
             }
         }
 

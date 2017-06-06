@@ -22,7 +22,8 @@ namespace RatingRequirements.UI
             AddNirCheckers();
             AddPvorCheckers();
             AddIaCheckers();
-            AddZvCheckers();
+			AddPbCheckers();
+			AddZvCheckers();
         }
 
         /// <summary>
@@ -67,7 +68,8 @@ namespace RatingRequirements.UI
             _checkers.Add("НИР10", e =>
                e[0].In(120, 60) ? null : "Допустимые значения для 1 параметра - 60, 120.");
             _checkers.Add("НИР11", e => null);
-        }
+			_checkers.Add("НИР12", e => null);
+		}
 
         /// <summary>
         /// Добавить методы проверки для НИР.
@@ -108,11 +110,20 @@ namespace RatingRequirements.UI
             _checkers.Add("ИЯ12", e =>
                 e[0].In(30, 60) ? null : "Допустимые значения для 1 параметра - 30, 60.");
         }
+		
+		/// <summary>
+		/// Добавить методы проверки для ПБ.
+		/// </summary>
+		private static void AddPbCheckers()
+		{
+			_checkers.Add("ПБ1", e => null);
+			_checkers.Add("ПБ2", e => null);
+		}
 
-        /// <summary>
-        /// Добавить методы проверки для ЗВ.
-        /// </summary>
-        private static void AddZvCheckers()
+		/// <summary>
+		/// Добавить методы проверки для ЗВ.
+		/// </summary>
+		private static void AddZvCheckers()
         {
             _checkers.Add("ЗВ1", e => null);
             _checkers.Add("ЗВ2", e => null);

@@ -22,10 +22,20 @@ namespace RatingRequirements.Core.Model
         /// </summary>
         public string Name { get; set; }
 
-        /// <summary>
-        /// Шаблон формулы.
-        /// </summary>
-        public string FormulaBase { get; set; }
+		/// <summary>
+		/// Длинное название.
+		/// </summary>
+		public string LongName { get; set; }
+
+		/// <summary>
+		/// Порядковый номер.
+		/// </summary>
+		public int OrderNumber { get; set; }
+
+		/// <summary>
+		/// Шаблон формулы.
+		/// </summary>
+		public string FormulaBase { get; set; }
 
         /// <summary>
         /// Количество параметров формулы.

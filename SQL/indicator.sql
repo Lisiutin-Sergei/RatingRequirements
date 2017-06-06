@@ -86,6 +86,8 @@ INSERT INTO public.indicator(name, indicator_type_id, formula_base, params_count
     
 INSERT INTO public.indicator(name, indicator_type_id, formula_base, params_count)
     VALUES ('ПБ1', '4c6a655b-3714-40d3-a997-99e9ddfedd9a', '330', 0);
+INSERT INTO public.indicator(name, indicator_type_id, formula_base, params_count)
+    VALUES ('ПБ2', '4c6a655b-3714-40d3-a997-99e9ddfedd9a', '330', 0);
     
 INSERT INTO public.indicator(name, indicator_type_id, formula_base, params_count)
     VALUES ('ЗВ1', '8aa87bbf-a471-4637-879f-a3df96fdee6f', null, 0);
@@ -104,7 +106,7 @@ INSERT INTO public.indicator(name, indicator_type_id, formula_base, params_count
 INSERT INTO public.indicator(name, indicator_type_id, formula_base, params_count)
     VALUES ('ЗВ8', '8aa87bbf-a471-4637-879f-a3df96fdee6f', '{0}', 1);
 INSERT INTO public.indicator(name, indicator_type_id, formula_base, params_count)
-    VALUES ('ЗВ9', '8aa87bbf-a471-4637-879f-a3df96fdee6f', '1000 * ( {0} + {1} / {2} )', 3);
+    VALUES ('ЗВ9', '8aa87bbf-a471-4637-879f-a3df96fdee6f', '1000 * {0}', 1);
 INSERT INTO public.indicator(name, indicator_type_id, formula_base, params_count)
     VALUES ('ЗВ10', '8aa87bbf-a471-4637-879f-a3df96fdee6f', '{0} * 200', 1);
 INSERT INTO public.indicator(name, indicator_type_id, formula_base, params_count)
